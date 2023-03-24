@@ -1,4 +1,5 @@
 // This requires SORTED ARRAY
+// Time Complexity -->  O(log n)
 // This is binary search, in which we Divide and Conquer
 // Divide the existing array into two halves and
 // check if you value is greater than or less than the middle value
@@ -7,9 +8,8 @@
 // 1. Better than the latter
 // provides index of the element in the array you are looking for
 // Goes by using two-pointer method
-// keep upgrading the lower pointer if element(middle value) is less than value
-// or keep lowering the upper pointer if element(middle value) is greater than value
-
+// if middle value < value,  upper pointer becomes equal to one less than middle value index
+// if middle value > value,  lower pointer becomes equal to one plus than middle value index
 
 function improvedBinarySearch (array, value) {
   var i = 0;
@@ -18,9 +18,9 @@ function improvedBinarySearch (array, value) {
     var middleIndex = Math.floor((i+j)/2);
     // console.log(middleIndex)
     if (array[middleIndex] < value) {
-      i++;
+      i = middleIndex + 1;
     } else if (array[middleIndex] > value) {
-      j--;
+      j = middleIndex - 1;
     } else {
       return middleIndex;
     }
@@ -28,9 +28,9 @@ function improvedBinarySearch (array, value) {
   return -1;
 }
 
-var numsArr1 = [1, 5, 7, 8, 9, 10, 35, 65];
+var numsArr1 = [1, 5, 7, 8, 9, 10, 35, 65, 90];
 
-console.log(improvedBinarySearch(numsArr1, 1));
+console.log(improvedBinarySearch(numsArr1, 9));
 
 
 // 2. The second approach
